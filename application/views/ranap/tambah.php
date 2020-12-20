@@ -1,0 +1,134 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+      <!-- <h1><i class="fa fa-user"></i>
+        Dokter
+       <small>Data Pasien</small>
+       
+      </h1> -->
+     <!-- <ol class="breadcrumb">
+     	<li><a href=""><i class="fa fa-dashboard"></i></a></li>
+     	<li class="active">Pasien</li>
+     </ol> -->
+    </section>
+   
+    <!-- Main Content -->
+    <section class="content">
+    	<div class="box">
+    		<div class="box-header">
+    			<h3 class="box-title">Rawat Jalan</h3>
+    			<div class="pull-right">
+    			<a href="<?php echo base_url('rawat_jalan') ?>" class="btn btn-primary btn-flat">
+    				<i class="fa fa-undo"></i>
+					Kembali
+    			</a>
+    			</div>
+    		</div>
+			<div class="box-body">
+    		  <div class="row">
+                <div class="col-md-4 col-md-offset-2">
+                    <!-- <?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?> -->
+                    <form action="<?php echo base_url('rawat_inap/add_/'.$rm->no_rm); ?>" method="post">
+                    <div class="form-group <?= form_error('no_rm')? 'has-error' : null?>">
+                            <label>No Rekamedis </label>
+                            <input type="text" name="no_rm" value="<?= $rm->no_rm ?>" readonly="readonly" class="form-control">
+                            <?php echo form_error('no_rm'); ?>
+                        </div>
+                        <div class="form-group <?= form_error('nama_pasien')? 'has-error' : null?>">
+                            <label>Nama Pasien </label>
+                            <input type="text" name="nama_pasien" readonly="" id="nama_pasien" value="<?= $rm->nama_pasien ?>" class="form-control">
+                            <?php echo form_error('nama_pasien'); ?>
+                        </div>
+                        <div class="form-group <?= form_error('pasien_kd')? 'has-error' : null?>">
+                            <label>Kode Pasien </label>
+                            <input type="text" name="pasien_kd" readonly="" id="pasien_kd" value="<?= $rm->pasien_kd ?>" class="form-control">
+                            <?php echo form_error('pasien_kd'); ?>
+                        </div>
+                       
+                        <div class="form-group <?= form_error('tanggal')? 'has-error' : null?>">
+                            <label>Tanggal </label>
+                            <input type="date" name="tanggal_inap" value="<?= date('Y-m-d') ?>" class="form-control">
+                            <?php echo form_error('tanggal'); ?>
+                        </div>
+                       
+                        <div class="form-group <?= form_error('dokter')? 'has-error' : null?>">
+                            <label>Dokter</label>
+                            <select name="dokter" class="form-control">
+                            <option value="">--Pilih--</option>
+                            <?php foreach($dokter->result() as $d) { ?>
+                            <option value="<?= $d->dokter_id ?>"><?= $d->nama_dokter ?></option>
+                      
+                            <?php } ?>
+                            </select>
+                            <?php echo form_error('dokter'); ?>
+                        </div>
+                       
+                        <div class="form-group <?= form_error('diagnosa')? 'has-error' : null?>">
+                            <label>Diagnosa </label>
+                         <textarea name="diagnosa" id="editor" class="form-control"><?= $rm->diagnosa ?></textarea>
+                            <?php echo form_error('diagnosa'); ?>
+                        </div>
+                        <div class="form-group <?= form_error('no_kamar')? 'has-error' : null?>">
+                            <label>No Kamar </label>
+                            <input type="text" name="no_kamar" id="no_kamar" class="form-control">
+                            
+                            <?php echo form_error('no_kamar'); ?>
+                        </div>
+                        <div class="form-group">
+                           <button type="submit" class="btn btn-success btn-flat"><i class="fa fa-save"></i> Simpan</button>
+                           <button type="reset" class="btn btn-danger btn-flat"><i class="fa fa-times"></i> Reset</button>
+                        </div>
+                    </form>
+                </div>      
+              </div>
+    		</div>
+    	</div>
+    </section>
+
+    <div class="modal fade" id="modal-pasien">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pilih Data Pasien</h4>
+               
+              </div>
+              <div class="modal-body">
+              <a href="<?=base_url()?>pasien/add" class="btn btn-primary"><i class="fa fa-plus"></i> Daftar Pasien</a><hr>
+              <table id="dataTables" class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Kode Pasien</th>
+                    <th>Nama Pasien</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Usia</th>
+                    <th>Aksi</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                <?php foreach($pasien as $p => $data) { ?>
+                 <tr>
+                    <td><?php echo $data->pasien_kd ?></td>
+                    <td><?php echo $data->nama_pasien ?></td>
+                    <td><?php echo $data->jenis_kelamin ?></td>
+                    <td><?php echo $data->usia ?> Thn</td>
+                    <td>
+                        <button class="btn btn-success btn-xs" id="pilih" data-kd="<?= $data->pasien_kd ?>" data-nama="<?= $data->nama_pasien ?>">
+                            <i class="fa fa-check"> Pilih</i>
+                        </button>
+                    </td>
+                 </tr>
+                <?php } ?>
+                </tbody>                
+
+              </table>
+              </div>
+  
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+     
