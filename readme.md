@@ -1,4 +1,4 @@
-# Sekolah Cimahi
+# Aplikasi Rekam Medis Klinik
 Aplikasi Web Rekam Medis untuk sebuah klinik dengan studi kasus pada klinik Citra Medika.
 
 ## System Requirement
@@ -12,3 +12,8 @@ Aplikasi Web Rekam Medis untuk sebuah klinik dengan studi kasus pada klinik Citr
 3. Create new mysql database and import the sql file provided (`sekolahcimahi.sql`)
 4. Copy folder and open in your directory, example /htdocs
 5. Done!
+
+## Build
+- Framework Codeigniter 3
+- Framework Bootstrap, AdminLTE
+- jQuery
